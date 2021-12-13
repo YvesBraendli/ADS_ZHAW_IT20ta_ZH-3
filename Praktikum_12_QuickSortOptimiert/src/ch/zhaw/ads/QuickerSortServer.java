@@ -1,10 +1,12 @@
+package ch.zhaw.ads;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class SortServer implements CommandExecutor {
+public class QuickerSortServer implements CommandExecutor {
     private final int DATARANGE = 10000000;
     public int dataElems; // number of data
     public int insertion_threshold = 50;
@@ -155,12 +157,12 @@ public class SortServer implements CommandExecutor {
         long startTime = System.currentTimeMillis();
         long endTime = startTime;
         int count = 0;
-        while (endTime < startTime + 10000) {
+//        while (endTime < startTime + 10000) {
             System.arraycopy(a, 0, b, 0, a.length);
             sorter.accept(b);
             count++;
             endTime = System.currentTimeMillis();
-        }
+//        }
         elapsed = (double) (endTime - startTime) / count;
 
         if (!isSorted(b)) throw new Exception("ERROR not eorted");
@@ -192,7 +194,7 @@ public class SortServer implements CommandExecutor {
     }
 
     public static void main(String[] args) throws Exception {
-        SortServer sorter = new SortServer();
+        QuickerSortServer sorter = new QuickerSortServer();
         String sort;
         sort = "BUBBLE RANDOM 10000";
         System.out.println(sorter.execute(sort));
